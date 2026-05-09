@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface-0: #0a0a0f;
+  --surface-1: #111118;
+  --surface-2: #1a1a24;
+  --surface-3: #222230;
+  --border: #2a2a3a;
+  --border-subtle: #1e1e2a;
+  --accent-green: #00ff88;
+  --accent-red: #ff4444;
+  --accent-amber: #ffaa00;
+  --accent-blue: #4488ff;
+  --text-primary: #e8e8f0;
+  --text-secondary: #8888aa;
+  --text-muted: #555568;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--surface-0);
+  color: var(--text-primary);
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--surface-1); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* Monospace numbers */
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+/* Flash animation for new data rows */
+@keyframes rowFlash {
+  0%   { background-color: rgba(0, 255, 136, 0.12); }
+  100% { background-color: transparent; }
+}
+
+.row-flash { animation: rowFlash 0.8s ease-out; }
+
+/* Freshness tier badges */
+.badge-streaming     { color: #00ff88; border-color: rgba(0, 255, 136, 0.3); }
+.badge-near-realtime { color: #4488ff; border-color: rgba(68, 136, 255, 0.3); }
+.badge-polled        { color: #ffaa00; border-color: rgba(255, 170, 0, 0.3); }
+.badge-filing        { color: #8888aa; border-color: rgba(136, 136, 170, 0.3); }

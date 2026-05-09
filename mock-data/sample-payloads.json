@@ -1,0 +1,162 @@
+{
+  "note": "These are the exact shapes the mock adapters produce. Real providers will emit similar shapes but via live API calls.",
+
+  "news_event": {
+    "raw_provider_payload": {
+      "id": "mock-news-001",
+      "symbol": "NVDA",
+      "headline": "NVIDIA announces record GPU shipments amid AI infrastructure buildout",
+      "summary": "NVIDIA's data center segment posts record quarterly revenue driven by H100 demand.",
+      "url": "https://example.com/nvda-earnings",
+      "published_at": "2024-11-15T09:30:00Z",
+      "sentiment": 0.82
+    },
+    "normalized_event": {
+      "source_name": "mock_news",
+      "source_event_id": "mock-news-001-202411150930",
+      "symbol": "NVDA",
+      "event_timestamp": "2024-11-15T09:30:00+00:00",
+      "freshness_tier": "POLLED",
+      "headline": "NVIDIA announces record GPU shipments amid AI infrastructure buildout",
+      "sentiment_raw": 0.82,
+      "sentiment_score": 82.0
+    }
+  },
+
+  "analyst_event": {
+    "raw_provider_payload": {
+      "id": "analyst-001",
+      "symbol": "NVDA",
+      "firm": "Goldman Sachs",
+      "analyst": "Toshiya Hari",
+      "action": "reiterate",
+      "from_rating": "Buy",
+      "to_rating": "Buy",
+      "from_target": 650.0,
+      "to_target": 800.0,
+      "published_at": "2024-11-15T09:00:00Z"
+    },
+    "normalized_event": {
+      "source_name": "mock_analyst",
+      "source_event_id": "analyst-001-202411150900",
+      "symbol": "NVDA",
+      "event_timestamp": "2024-11-15T09:00:00+00:00",
+      "freshness_tier": "NEAR_REALTIME",
+      "analyst_firm": "Goldman Sachs",
+      "analyst_name": "Toshiya Hari",
+      "action": "reiterate",
+      "from_rating": "Buy",
+      "to_rating": "Buy",
+      "from_target": 650.0,
+      "to_target": 800.0,
+      "momentum_score": 52.5
+    }
+  },
+
+  "insider_event": {
+    "raw_provider_payload": {
+      "id": "insider-001",
+      "symbol": "NVDA",
+      "insider_name": "Jensen Huang",
+      "insider_title": "CEO",
+      "transaction_type": "sell",
+      "shares": 250000,
+      "price_per_share": 480.50,
+      "total_value": 120125000,
+      "filing_date": "2024-11-15",
+      "transaction_date": "2024-11-12"
+    },
+    "normalized_event": {
+      "source_name": "mock_insider",
+      "source_event_id": "insider-001-202411151200",
+      "symbol": "NVDA",
+      "event_timestamp": "2024-11-15T00:00:00+00:00",
+      "freshness_tier": "FILING_DELAYED",
+      "freshness_note": "Filing-delayed — transaction may have occurred days before this filing",
+      "insider_name": "Jensen Huang",
+      "insider_title": "CEO",
+      "transaction_type": "sell",
+      "shares": 250000,
+      "price_per_share": 480.50,
+      "total_value": 120125000,
+      "filing_date": "2024-11-15T00:00:00+00:00",
+      "transaction_date": "2024-11-12T00:00:00+00:00",
+      "signal_score": -24.0
+    }
+  },
+
+  "signal_score": {
+    "symbol": "NVDA",
+    "scored_at": "2024-11-15T10:00:00+00:00",
+    "news_sentiment_score": 72.0,
+    "catalyst_score": 65.0,
+    "analyst_momentum_score": 52.5,
+    "insider_signal_score": -24.0,
+    "price_confirmation_score": 0.0,
+    "total_trade_score": 45.7,
+    "label": "WATCH",
+    "explanation": [
+      { "type": "bullish", "text": "Strong bullish news sentiment cluster (+72)" },
+      { "type": "bullish", "text": "Bullish analyst momentum — recent upgrades or target raises (+52)" },
+      { "type": "bearish", "text": "Filing-delayed insider sell signal detected (-24) — note: filing date may lag transaction by several days" }
+    ],
+    "weights_snapshot": {
+      "news_sentiment": 0.20,
+      "catalyst": 0.20,
+      "analyst_momentum": 0.30,
+      "insider_signal": 0.20,
+      "price_confirmation": 0.10
+    }
+  },
+
+  "websocket_messages": {
+    "news": {
+      "v": 1,
+      "type": "news",
+      "symbol": "NVDA",
+      "freshness_tier": "POLLED",
+      "headline": "NVIDIA announces record GPU shipments",
+      "sentiment_score": 82.0,
+      "event_timestamp": "2024-11-15T09:30:00+00:00",
+      "source": "mock_news"
+    },
+    "analyst": {
+      "v": 1,
+      "type": "analyst",
+      "symbol": "AAPL",
+      "freshness_tier": "NEAR_REALTIME",
+      "action": "upgrade",
+      "firm": "Wedbush",
+      "to_rating": "Outperform",
+      "to_target": 220.0,
+      "momentum_score": 78.0,
+      "event_timestamp": "2024-11-15T08:45:00+00:00"
+    },
+    "insider": {
+      "v": 1,
+      "type": "insider",
+      "symbol": "TSLA",
+      "freshness_tier": "FILING_DELAYED",
+      "freshness_note": "Filing-delayed — transaction may have occurred days before this filing",
+      "insider_name": "Elon Musk",
+      "transaction_type": "buy",
+      "shares": 500000,
+      "total_value": 105000000,
+      "signal_score": 52.5,
+      "event_timestamp": "2024-11-15T00:00:00+00:00"
+    },
+    "score": {
+      "v": 1,
+      "type": "score",
+      "symbol": "NVDA",
+      "total_trade_score": 45.7,
+      "label": "WATCH",
+      "scored_at": "2024-11-15T10:00:00+00:00"
+    },
+    "heartbeat": {
+      "v": 1,
+      "type": "heartbeat",
+      "ts": 1731661200.123
+    }
+  }
+}
